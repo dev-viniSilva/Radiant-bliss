@@ -1,3 +1,11 @@
+process.on("uncaughtException", err => {
+  console.error("CRASH:", err);
+});
+
+process.on("unhandledRejection", err => {
+  console.error("PROMISE ERROR:", err);
+});
+
 const express = require("express");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
