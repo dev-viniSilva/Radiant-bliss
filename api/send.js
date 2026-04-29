@@ -1,20 +1,12 @@
-const nodemailer = require("nodemailer");
+import nodemailer from "nodemailer";
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ success: false, message: "Method not allowed" });
   }
 
-  const {
-    first_name,
-    last_name,
-    phone,
-    city,
-    service_type,
-    message
-  } = req.body;
+  const { first_name, last_name, phone, city, service_type, message } = req.body;
 
-  // simple validation
   const nameRegex = /^[a-zA-ZÀ-ÿ\s]{2,50}$/;
   const phoneRegex = /^[0-9()+\-\s]{7,20}$/;
 
@@ -55,9 +47,8 @@ Message: ${message || "N/A"}
     });
 
     return res.status(200).json({ success: true });
-
   } catch (err) {
     console.log(err);
     return res.status(500).json({ success: false });
   }
-};
+}
