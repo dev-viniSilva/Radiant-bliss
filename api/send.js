@@ -36,7 +36,7 @@ export default async function handler(req, res) {
       to: process.env.EMAIL_USER,
       subject: "New Cleaning Lead - Radiant Bliss",
       text: `
-NEW CLIENT:
+NEW CLIENT | Radiant bliss:
 
 Name: ${first_name} ${last_name}
 Phone: ${phone}
