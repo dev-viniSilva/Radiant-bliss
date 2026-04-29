@@ -1,20 +1,7 @@
 const form = document.getElementById('quote-form');
 
 /* -------------------------
-   Fade animations
---------------------------*/
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.12 });
-
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-/* -------------------------
-   FRONTEND VALIDATION
+   VALIDATION
 --------------------------*/
 function validate(data) {
   const nameRegex = /^[a-zA-ZÀ-ÿ\s]{2,50}$/;
@@ -33,10 +20,9 @@ function validate(data) {
 }
 
 /* -------------------------
-   API BASE (IMPORTANT)
+   BACKEND (RENDER URL)
 --------------------------*/
-// 🔥 MUDA ISSO QUANDO FOR PRODUCTION
-const API_URL = window.location.origin;
+const API_URL = "https://SEU-BACKEND.onrender.com";
 
 /* -------------------------
    FORM SUBMIT
@@ -63,9 +49,11 @@ if (form) {
     }
 
     try {
-      const res = await fetch(`${API_URL}/api/send`, {
+      const res = await fetch(`${API_URL}/send`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(data)
       });
 
